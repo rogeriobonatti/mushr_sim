@@ -1,0 +1,8 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+
+    <include file="$(find mushr_sim)/launch/teleop_server.launch"></include>
+    <include file="$(find mushr_rhc_ros)/launch/sim/sim_server.launch"></include>
+    <include file="$(find mushr_rhc_ros)/launch/real/record_server.launch"></include>
+
+</launch>
