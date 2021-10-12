@@ -3,6 +3,7 @@
 
     <!-- Set to 1 if you want to run the map_server -->
     <arg name="map_server" value = "0" />
+    <arg name="teleop" value = "0" />
 
     <arg name="car_name" default="car" />
 
@@ -25,6 +26,7 @@
             <arg name="racecar_color" value="" />
 
             <arg name="car_name" value="$(arg car_name)" />
+            <arg name="teleop" value="$(arg teleop)" />
          </include>
     </group>
 

@@ -1,6 +1,7 @@
 <launch>
 
     <arg name="car_name" default="car" />
+    <arg name="teleop" value = "1"/>
 
     <!-- Could be racecar-mit, racecar-uw-tx2, or racecar-uw-nano -->
     <arg name="racecar_version" default="racecar-uw-nano" />
@@ -27,9 +28,9 @@
         <param name="robot_description" value="/$(arg car_name)/robot_description" />
     </node>
 
-
-    <include file="$(find mushr_sim)/launch/keyboard_teleop.launch.xml" />
-
+    <group if="$(arg teleop)">
+        <include file="$(find mushr_sim)/launch/keyboard_teleop.launch.xml" />
+    </group>
 
     <group ns="mux">
         <!-- Spawn MUXs -->
