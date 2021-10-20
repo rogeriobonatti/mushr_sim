@@ -1,7 +1,7 @@
 <!-- -*- mode: XML -*- -->
 <launch>
 
-    <arg name="record_path" default="/project/recordings"/>
+    <arg name="record_path" default="/home/rb/recordings"/>
 
     <include file="$(find mushr_sim)/launch/teleop_server.launch"></include>
     <include file="$(find mushr_rhc_ros)/launch/sim/sim_server.launch"></include>
