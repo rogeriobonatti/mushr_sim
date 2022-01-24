@@ -17,10 +17,11 @@ import utils
 class FakeURGNode:
     def __init__(self):
 
-        self.UPDATE_RATE = float(rospy.get_param("~update_rate", 10.0))
-        self.THETA_DISCRETIZATION = float(rospy.get_param("~theta_discretization", 656))
-        self.MIN_RANGE_METERS = float(rospy.get_param("~min_range_meters", 0.02))
-        self.MAX_RANGE_METERS = float(rospy.get_param("~max_range_meters", 5.6))
+        self.use_laser_noise = float(rospy.get_param("~laser_noise", True))
+        self.UPDATE_RATE = float(rospy.get_param("~update_rate", 13.1))
+        self.THETA_DISCRETIZATION = float(rospy.get_param("~theta_discretization", 720))
+        self.MIN_RANGE_METERS = float(rospy.get_param("~min_range_meters", 0.08))
+        self.MAX_RANGE_METERS = float(rospy.get_param("~max_range_meters", 16.0))
         self.ANGLE_STEP = float(rospy.get_param("~angle_step", 0.00613592332229))
         self.ANGLE_MIN = float(rospy.get_param("~angle_min", -2.08621382713))
         self.ANGLE_MAX = float(rospy.get_param("~angle_max", 2.09234976768))
@@ -143,7 +144,8 @@ class FakeURGNode:
             (laser_pose_x, laser_pose_y, laser_angle), dtype=np.float32
         ).reshape(1, 3)
         self.range_method.calc_range_repeat_angles(range_pose, self.ANGLES, ranges)
-        self.noise_laser_scan(ranges)
+        if self.use_laser_noise:
+            self.noise_laser_scan(ranges)
         ls.ranges = ranges.tolist()
         self.laser_pub.publish(ls)
 
