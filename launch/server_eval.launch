@@ -1,0 +1,13 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+
+    <arg name="out_path" default="/home/rb/hackathon_data/model_eval/model_test"/>
+    <arg name="model_path" default="/home/rb/hackathon_data/aml_outputs/log_output/normal-kingfish/GPTiros_e2e_8gpu_2022-02-17_1645120431.7528405_2022-02-17_1645120431.7528613/model/epoch10.pth.tar"/>
+
+    <include file="$(find mushr_sim)/launch/teleop_server.launch"></include>
+    <include file="$(find mushr_rhc_ros)/launch/sim/sim_server_eval.launch">
+        <arg name="out_path" value="$(arg out_path)" />
+        <arg name="model_path" value="$(arg model_path)" />
+    </include>
+
+</launch>
