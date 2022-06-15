@@ -29,12 +29,24 @@ class FakeURGNode:
             self.ANGLE_MIN, self.ANGLE_MAX, self.ANGLE_STEP, dtype=np.float32
         )
         self.CAR_LENGTH = float(rospy.get_param("~car_length", 0.33))
+
+        # full noise
+        # self.Z_SHORT = float(rospy.get_param("~z_short", 0.03))
+        # self.Z_MAX = float(rospy.get_param("~z_max", 0.16))
+        # self.Z_BLACKOUT_MAX = float(rospy.get_param("~z_blackout_max", 50)) # originally 50, group of points that dissapear together
+        # self.Z_RAND = float(rospy.get_param("~z_rand", 0.01)) # orig 0.01, random returns that span from min to max range
+        # self.Z_HIT = float(rospy.get_param("~z_hit", 0.8)) # orig 0.8, number of target hits
+        # self.Z_SIGMA = float(rospy.get_param("~z_sigma", 0.03))
+
+        # partial noise
         self.Z_SHORT = float(rospy.get_param("~z_short", 0.00))
         self.Z_MAX = float(rospy.get_param("~z_max", 0.2))
         self.Z_BLACKOUT_MAX = float(rospy.get_param("~z_blackout_max", 50)) # originally 50, group of points that dissapear together
         self.Z_RAND = float(rospy.get_param("~z_rand", 0.00)) # orig 0.01, random returns that span from min to max range
         self.Z_HIT = float(rospy.get_param("~z_hit", 0.99)) # orig 0.8, number of target hits
         self.Z_SIGMA = float(rospy.get_param("~z_sigma", 0.03))
+
+
         self.TF_PREFIX = str(rospy.get_param("~tf_prefix", "").rstrip("/"))
         if len(self.TF_PREFIX) > 0:
             self.TF_PREFIX = self.TF_PREFIX + "/"
